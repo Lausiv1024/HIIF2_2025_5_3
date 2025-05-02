@@ -2,8 +2,7 @@
 #import "@preview/showybox:2.0.1": showybox
 
 #set text(font: "Noto Sans JP")
-#show regex("[0-9]"): set text(font: "Gill Sans MT") 
-// 数字のみ三菱エレベータ化
+#show regex("[0-9]"): set text(font: "Gill Sans MT") // 数字のみ三菱エレベータ化
 
 #show: slides.with(
   title: "BLEを使った簡易的な近距離チャットアプリ",
@@ -14,7 +13,7 @@
   title-color: rgb("#704685")
 )
 
-== お品書き
+== 目次
 #enum([自己紹介],[作ろうとした理由], [BLEの説明], [作ったもの],
 [作ったものの欠点], [今後の展望])
 
@@ -30,14 +29,14 @@
   - BLEを使った開発
   - .NET Aspire(普通の開発でも神技術)
 - SNS
-  - X : \@#text(font: "Gill Sans MT")[lausiv1024]
+  - X : \@lausiv1024
   - Github : Lausiv1024
-- EF Coreに嫌われている
-  - 永遠にMigrationができない
 
 == これを作ろうとした理由
 - スマホを左手デバイスとして使えるアプリケーションを作っている。
 - これに応用できないかと考えたから。
+#place(bottom + right,
+image("SPApp.png"))
 
 == そもそもBLEとは
 - Bluetoothの省電力規格
@@ -54,8 +53,16 @@ IoTデバイス等がこちらの役割を果たす場合が多い。主に接�
 
 #image("image.png")
 
-== GATT(Generic Attribute Profile)
-a
+== BLEの通信方法
+=== Service
+機能の単位で作られる定義
+\ 例：キーボード単体
+=== Characteristic
+実際にやり取りするデータが入る場所
+\ 例：押されたキーの情報
+#place(bottom + right,
+image("image-2.png", width: 50%)
+)
 = 早速よくある構成と逆で作りましょう
 
 == デスクトップApp(WPF)
@@ -78,13 +85,21 @@ image("Screenshot_20250502-230704.png", width: 20%)
 === スマホをセントラルにする欠点
 #align(center)[
 #text(size: 20pt)[
-Write(S→Pの通信)が遅い！！
+* Write(S→Pの通信)が遅い！！ *
 ]
 ]
 とても左手デバイスとして使おうとは思えないレベル。逆にNotifyは割と行ける。
 == 今後の展望
-=== ペアリング機能
+=== ペアリング機能(現在実装中)
 鍵を交換し、以後の通信でその保存した鍵を用いてセキュアな通信をする。
 OSの機能に頼らずカスタムプロファイル上に実装する。
 === スマホをペリフェラルとして使う
 これが1番早いと思います。
+== 使用したライブラリ・フレームワーク
+=== Mobile App
+- .NET MAUI
+- #link("https://github.com/dotnet-bluetooth-le/dotnet-bluetooth-le/tree/master")[Bluetooth LE plugin for Xamarin & MAUI]
+== 今回紹介したプロジェクト
+今回紹介したプロジェクトは以下のリンクから確認できます。 \
+ペアリング機能を実装中(ブランチ名がMessagePackだけど気にしないで) \
+#link("https://github.com/Lausiv1024/BLETest")[BLETest]
