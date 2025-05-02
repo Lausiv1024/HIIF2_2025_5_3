@@ -26,15 +26,5 @@
   - X : \@#text(font: "Gill Sans MT")[lausiv1024]
   - Github : Lausiv1024
 
-== コード書くよ
-codelstいらねーじゃん
-
-```cs
-using System;
-
-Console.WriteLine("Hello world!");
-```
-
-== Box
-
-na-n
+== そもそもBLEとは
+- Bluetoothの省電力規格
